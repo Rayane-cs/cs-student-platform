@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import FileUploader from './FileUploader';
+import ModuleChat from './ModuleChat';  // ✅ import added
 
-export default function AdminDashboard() {
+export default function AdminDashboard({ session }) {  // ✅ make sure session comes in
   const [years, setYears] = useState([]);
   const [modules, setModules] = useState([]);
   const [newYear, setNewYear] = useState('');
@@ -72,6 +73,7 @@ export default function AdminDashboard() {
           <li key={mod.id}>
             {mod.name} (Year: {mod.year_id})
             <FileUploader moduleId={mod.id} />
+            <ModuleChat moduleId={mod.id} user={session.user} />  {/* ✅ added here */}
           </li>
         ))}
       </ul>

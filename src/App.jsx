@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from './supabaseClient';
+import ProblemBoard from './ProblemBoard';
+
 import Auth from './Auth';
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
       <h1>CS Student Platform</h1>
       <p>Welcome, {profile ? profile.full_name : 'User'}!</p>
       {profile && profile.is_admin && <AdminDashboard />}
+      <h2>Programming Problems Section</h2>
+      {session && <ProblemBoard user={session.user} />}
     </div>
   );
 }
